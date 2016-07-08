@@ -10,5 +10,13 @@ module.exports = {
    */
   isDevelopingAddon: function() {
     return true;
+  },
+
+  /**
+   * Required for using ember-cli-sass
+   * See: https://github.com/aexmachina/ember-cli-sass#addon-usage
+   */
+  included: function(app) {
+    this._super.included(app);
   }
 };
