@@ -1,0 +1,43 @@
+<div class="list-group list-card" style={{listCardStyle}}>
+  {{#if listCardHeaderComponentName}}
+    {{component listCardHeaderComponentName listId=list_id}}
+  {{!-- {{else if title}}
+    <div class="list-group-item">
+      {{title}}
+    </div> --}}
+  {{else}}
+    {{list-card/header
+      title=title
+      filterGroups=filterGroups
+      queryTokens=queryTokens
+      onQueryTokenSelected=(action "addQueryToken")
+      onQueryTokenDeselected=(action "removeQueryToken")
+      onQueryTokenReplaced=(action "replaceQueryToken")
+    }}
+  {{/if}}
+
+
+  {{#if error}}
+    {{list-card/error-item error=error minHeight=minLoadingHeight}}
+  {{else if items}}
+    {{#each items as |item|}}
+      {{component listCardItemComponentName item=item itemOptions=itemOptions}}
+    {{/each}}
+  {{else if isEmpty}}
+    {{list-card/empty-item minHeight=minLoadingHeight}}
+  {{else if isLoading}}
+    {{list-card/loading-item minHeight=minLoadingHeight}}
+  {{else}}
+    {{list-card/error-item error=error minHeight=minLoadingHeight}}
+  {{/if}}
+
+  {{#if isLoading}}
+    {{list-card/loading-mask}}
+  {{/if}}
+</div>
+<nav>
+  <ul class="pager">
+    <li class="{{if previousPageDisabled 'disabled'}}"><a href="#" {{action "previousPage"}}>Previous</a></li>
+    <li><a href="#" {{action "nextPage"}}>Next</a></li>
+  </ul>
+</nav>
