@@ -1,0 +1,117 @@
+.list-card-component {
+}
+
+.list-card-header-component {
+  padding: 0;
+
+  .navbar {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+  }
+}
+
+.list-card-error-item {
+}
+
+.list-card-loading-mask-component {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0.5;
+  background-color: #fff;
+  z-index: 100;
+}
+
+.list-card-loading-item-component {
+  color: #aaa;
+}
+
+.list-card-filler {
+  font-size: 12px;
+  font-weight: bold;
+
+  // Inspired by
+  // http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+}
+
+.list-card-title {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-weight: normal;
+  font-size: 85%;
+  color: #aeaeae;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding-left: 15px;
+}
+
+.list-card {
+  position: relative;
+
+  .list-group-item {
+    position: relative;
+
+    .time {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+    }
+
+    .labels {
+      margin-left: 10px;
+
+      .label {
+        position: relative;
+        top: -2px;
+      }
+    }
+
+    .first-row {
+      margin-bottom: 5px;
+    }
+
+    .title {
+      font-size: 18px;
+    }
+  }
+}
+
+.order-list-card-item-component {
+
+}
+
+$color-competitor: #f0ad4e;
+$color-primary: #337ab7;
+
+.list-group-item-primary {
+  border-left: 4px solid $color-primary;
+}
+
+.list-group-item-competitor {
+  border-left: 4px solid $color-competitor;
+}
+
+.list-group-item-spacer {
+  padding: 5px 0px;
+  background-color: #f5f8fa;
+}
+
+.list-card-legend {
+  .legend-text-primary {
+    color: $color-primary;
+  }
+
+  .legend-text-competitor {
+    color: $color-competitor;
+  }
+}

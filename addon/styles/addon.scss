@@ -1,4 +1,11 @@
-.btn-border {
-  border-color: red !important;
-  padding: 100px;
-}
+/**
+ * Note: The application using this addon should import the components/list-card
+ * stylesheet into app.scss _after_ the bootstrap styles
+ * This can be done as follows:
+ *
+ * @import "node_modules/ember-list-card/addon/styles/components/list-card";
+ *
+ * If it is included from this file it works but it is added before bootstrap
+ * which means most styles don't extend bootstrap. Maybe there's a way to
+ * order when this addon's stylesheet gets included in the styles order?
+ */
