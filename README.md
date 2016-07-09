@@ -1,26 +1,60 @@
-# Ember-list-card
+# Ember List Card
 
-This README outlines the details of collaborating on this Ember addon.
+A github-inspired list component for Ember apps
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+```
+ember install ember-list-card
+```
 
-## Running
+## Usage
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+Create a list-card and list-card-item component
+```
+# Create a list-card component which will extend this addon's component
+ember g component customers/list-card
 
-## Running Tests
+# Create a list-card-item component which will render each row in the list
+ember g component customer/list-card-item
+```
 
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+Extend this addon's list-card component and add the model name and item component
+```javascript
+// components/customers/list-card.js
+import Ember from 'ember';
+import ListCardComponent from 'ember-list-card/components/list-card';
 
-## Building
+export default ListCardComponent.extend({
+  /**
+   * Define the Ember data model to use
+   */
+  queryModelName: 'customer',
 
-* `ember build`
+  /**
+   * Define the item component to render for each row
+   */
+  listCardItemComponentName: "customer/list-card-item",
+});
+```
 
-For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+## Developing
+
+```
+# Clone the repo
+git clone git@github.com:wcurtis/ember-list-card.git
+
+# Link the repo to npm so it's registered locally
+cd ember-list-card
+npm link
+
+# Add `ember-list-card` as a dependency in your package.json of the hosting app
+"ember-list-card": "*"
+
+# Run npm link in the hosting app to link to the local addon
+npm link ember-list-card
+```
+
+## Roadmap
+- Mass actions
+- Export to csv
