@@ -27,7 +27,6 @@ export default Ember.Component.extend({
    * Note: You must delete the template
    * for the child list-card in order for this one to get picked up
    */
-  // layoutName: 'components/list-card',
   layout: layout,
 
   /**************************************************
@@ -35,18 +34,24 @@ export default Ember.Component.extend({
    ***************************************************/
 
   /**
-   * Required.
+   * Override required.
+   *
    * The name of the model to query
    * E.g. order
    */
   queryModelName: null,
 
   /**
-   * Required.
+   * Override required.
    *
    * The name of the list-card-item component for this grid.
    */
   listCardItemComponentName: null,
+
+  /**
+   * Set to true to add pagination UI elements and functionality
+   */
+  isPaginationEnabled: false,
 
   /**
    * Current page

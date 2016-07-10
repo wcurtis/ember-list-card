@@ -35,9 +35,11 @@
     {{list-card/loading-mask}}
   {{/if}}
 </div>
-<nav>
-  <ul class="pager">
-    <li class="{{if previousPageDisabled 'disabled'}}"><a href="#" {{action "previousPage"}}>Previous</a></li>
-    <li><a href="#" {{action "nextPage"}}>Next</a></li>
-  </ul>
-</nav>
+{{#if isPaginationEnabled}}
+  <nav>
+    <ul class="pager">
+      <li class="{{if previousPageDisabled 'disabled'}}"><a href="#" {{action "previousPage"}}>Previous</a></li>
+      <li><a href="#" {{action "nextPage"}}>Next</a></li>
+    </ul>
+  </nav>
+{{/if}}
