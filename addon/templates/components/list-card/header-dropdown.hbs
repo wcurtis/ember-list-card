@@ -1,5 +1,5 @@
 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{computedName}} <span class="caret"></span></a>
-<ul class="dropdown-menu">
+<ul class="dropdown-menu-no-mobile">
   {{#each dropdownItems as |dropdownItem|}}
     {{list-card/header-dropdown-item dropdownItem=dropdownItem queryTokens=queryTokens onSelect=(action "selectDropdownItem") onDeselect=(action "deselectDropdownItem")}}
   {{/each}}

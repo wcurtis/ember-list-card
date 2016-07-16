@@ -1,19 +1,11 @@
 .list-card-header-component {
   padding: 0;
 
+  // Bootstrap navbar overrides
   .navbar {
     margin: 0;
     border: none;
     border-radius: 0;
-  }
-
-  .navbar-nav > li > a {
-    padding-top: 14.5px;
-    padding-bottom: 14.5px;
-  }
-
-  .navbar-nav > li {
-    float: left;
   }
 
   .navbar-nav {
@@ -23,5 +15,82 @@
 
   .navbar-right {
     float: right !important;
+  }
+
+  .navbar-nav > li {
+    float: left;
+  }
+
+  .navbar-nav > li > a {
+    padding-top: 14.5px;
+    padding-bottom: 14.5px;
+  }
+
+  .navbar-right .dropdown-menu-no-mobile {
+    left: auto;
+    right: 0;
+  }
+
+  .navbar-left .dropdown-menu-no-mobile {
+    right: auto;
+    left: 0;
+  }
+
+  /**
+   * Dropdown menu no-mobile is a variant of bootstrap's
+   * dropdown-menu which doesn't collapse into a mobile
+   * view. I'd really ilke to clean all this up one day.
+   */
+  .dropdown-menu-no-mobile {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    list-style: none;
+    font-size: 14px;
+    text-align: left;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    background-clip: padding-box;
+  }
+
+  .open .dropdown-menu-no-mobile {
+    display: block;
+  }
+
+  .dropdown-menu-no-mobile > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857;
+    color: #333333;
+    white-space: nowrap;
+  }
+
+  .navbar-right .dropdown-menu-no-mobile {
+    left: auto;
+    right: 0;
+  }
+
+  .navbar-nav > li > .dropdown-menu-no-mobile {
+    margin-top: 0;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+
+  .dropdown-menu-no-mobile > li > a:hover, .dropdown-menu2 > li > a:focus {
+    text-decoration: none;
+    color: #262626;
+    background-color: #f5f5f5;
   }
 }
