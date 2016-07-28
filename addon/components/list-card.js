@@ -1,6 +1,25 @@
 import Ember from 'ember';
 import layout from '../templates/components/list-card';
 
+const QueryFilter = Ember.Object.extend({
+  name: null,
+  queryToken: null,
+});
+
+const FilterGroup = Ember.Object.extend({
+  name: null,
+  filterOptions: null,
+});
+
+const QueryToken = Ember.Object.extend({
+  key: null,
+  value: null,
+
+  equals(queryToken) {
+    return queryToken.get('key') === this.get('key') && queryToken.get('value') === this.get('value');
+  }
+});
+
 /**
  * List card is a github-inspired grid for sorting and filtering collections of items
  *
@@ -17,7 +36,7 @@ import layout from '../templates/components/list-card';
  * via ember-data.
  *
  */
-export default Ember.Component.extend({
+const ListCardComponent = Ember.Component.extend({
   classNames: ['list-card-component'],
 
   /**
@@ -88,6 +107,20 @@ export default Ember.Component.extend({
    */
   title: null,
 
+  /**
+   * Array of query tokens that are currently active on the grid
+   *
+   * Can be initially set by either the child component or passed in
+   */
+  queryTokens: null,
+
+  /**
+   * Array of filter groups for the grid.
+   *
+   * Can be initially set by either the child component or passed in
+   */
+  filterGroups: null,
+
   /**************************************************
    * Internals, not to be overridden
    ***************************************************/
@@ -106,13 +139,6 @@ export default Ember.Component.extend({
    * Set if there's an error loading orders
    */
   error: null,
-
-  /**
-   * Array of query tokens that are currently active on the grid
-   *
-   * Can be initially set by either the child component or passed in
-   */
-  queryTokens: null,
 
   /**
    * Previous page is disabled when on page 1
@@ -166,10 +192,23 @@ export default Ember.Component.extend({
     this.reloadItems();
   }),
 
+  init() {
+    this._super(...arguments);
+
+    if (Ember.isNone(this.get('queryTokens'))) {
+      this.set('queryTokens', []);
+    }
+
+    if (Ember.isNone(this.get('filterGroups'))) {
+      this.set('filterGroups', []);
+    }
+  }
+
   /**
    * Load items on render
    */
   didReceiveAttrs() {
+    this._super(...arguments);
     this.reloadItems();
   },
 
@@ -248,3 +287,6 @@ export default Ember.Component.extend({
     }
   }
 });
+
+export default ListCardComponent;
+export { ListCardComponent, QueryToken, QueryFilter, FilterGroup };
