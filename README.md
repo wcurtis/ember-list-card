@@ -38,6 +38,50 @@ export default ListCardComponent.extend({
 });
 ```
 
+This components supports filtering and sorting 
+```js
+// components/customers/list-card.js
+import Ember from 'ember';
+import ListCardComponent, { QueryToken, QueryFilter, FilterGroup } from 'ember-list-card/components/list-card';
+
+export default ListCardComponent.extend({
+  ...
+
+  filterGroups: Ember.computed(function() {
+    let filterGroups = [
+      FilterGroup.create({
+        name: 'Stars',
+        filterOptions: [
+          QueryFilter.create({
+            name: '3 stars',
+            queryToken: QueryToken.create({
+              key: 'star_rating',
+              value: '3'
+            }),
+          }),
+          QueryFilter.create({
+            name: '2 stars',
+            queryToken: QueryToken.create({
+              key: 'star_rating',
+              value: '2'
+            }),
+          }),
+          QueryFilter.create({
+            name: '1 star',
+            queryToken: QueryToken.create({
+              key: 'star_rating',
+              value: '1'
+            }),
+          }),
+        ]
+      }),
+      // other FilterGroup's
+    ];
+    return filterGroups;
+  })
+});
+```
+
 ## Developing
 
 ```
