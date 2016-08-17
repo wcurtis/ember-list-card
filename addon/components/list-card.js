@@ -1,25 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/list-card';
 
-const QueryFilter = Ember.Object.extend({
-  name: null,
-  queryToken: null,
-});
-
-const FilterGroup = Ember.Object.extend({
-  name: null,
-  filterOptions: null,
-});
-
-const QueryToken = Ember.Object.extend({
-  key: null,
-  value: null,
-
-  equals(queryToken) {
-    return queryToken.get('key') === this.get('key') && queryToken.get('value') === this.get('value');
-  }
-});
-
 /**
  * List card is a github-inspired grid for sorting and filtering collections of items
  *
@@ -174,7 +155,7 @@ const ListCardComponent = Ember.Component.extend({
     return {
       page: this.get('page'),
       page_size: this.get('pageSize')
-    }
+    };
   }),
 
   /**
@@ -202,7 +183,7 @@ const ListCardComponent = Ember.Component.extend({
     if (Ember.isNone(this.get('filterGroups'))) {
       this.set('filterGroups', []);
     }
-  }
+  },
 
   /**
    * Load items on render
@@ -262,6 +243,7 @@ const ListCardComponent = Ember.Component.extend({
       const newQueryTokens = queryTokens.reject(queryToken => {
         return queryToken.equals(queryTokenToRemove);
       });
+      this.set('queryTokens', newQueryTokens);
     },
 
     /**
@@ -289,4 +271,3 @@ const ListCardComponent = Ember.Component.extend({
 });
 
 export default ListCardComponent;
-export { ListCardComponent, QueryToken, QueryFilter, FilterGroup };

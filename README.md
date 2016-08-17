@@ -42,7 +42,8 @@ This components supports filtering and sorting
 ```js
 // components/customers/list-card.js
 import Ember from 'ember';
-import ListCardComponent, { QueryToken, QueryFilter, FilterGroup } from 'ember-list-card/components/list-card';
+import ListCardComponent from 'ember-list-card/components/list-card';
+import { QueryToken, QueryFilter, FilterGroup } from 'ember-list-card';
 
 export default ListCardComponent.extend({
   ...
