@@ -26,8 +26,6 @@ export default Ember.Component.extend({
     let activeQueryTokens = this.get('queryTokens');
     let queryToken = this.get('dropdownItem.queryToken');
 
-    console.log("Recomput isSelected");
-
     if (Ember.isBlank(queryToken)) {
       return false;
     }
