@@ -170,7 +170,7 @@ const ListCardComponent = Ember.Component.extend({
    * Reload the collection when computedQueryOptions change
    */
   computedQueryOptionsChanged: Ember.observer('computedQueryOptions', function() {
-    this.reloadItems();
+    Ember.run.scheduleOnce('actions', this, this.reloadItems);
   }),
 
   init() {
