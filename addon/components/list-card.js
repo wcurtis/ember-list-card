@@ -17,7 +17,7 @@ import layout from '../templates/components/list-card';
  * via ember-data.
  *
  */
-export default Ember.Component.extend({
+const ListCardComponent = Ember.Component.extend({
   classNames: ['list-card-component'],
 
   /**
@@ -88,6 +88,20 @@ export default Ember.Component.extend({
    */
   title: null,
 
+  /**
+   * Array of query tokens that are currently active on the grid
+   *
+   * Can be initially set by either the child component or passed in
+   */
+  queryTokens: null,
+
+  /**
+   * Array of filter groups for the grid.
+   *
+   * Can be initially set by either the child component or passed in
+   */
+  filterGroups: null,
+
   /**************************************************
    * Internals, not to be overridden
    ***************************************************/
@@ -106,13 +120,6 @@ export default Ember.Component.extend({
    * Set if there's an error loading orders
    */
   error: null,
-
-  /**
-   * Array of query tokens that are currently active on the grid
-   *
-   * Can be initially set by either the child component or passed in
-   */
-  queryTokens: null,
 
   /**
    * Previous page is disabled when on page 1
@@ -148,7 +155,7 @@ export default Ember.Component.extend({
     return {
       page: this.get('page'),
       page_size: this.get('pageSize')
-    }
+    };
   }),
 
   /**
@@ -163,13 +170,26 @@ export default Ember.Component.extend({
    * Reload the collection when computedQueryOptions change
    */
   computedQueryOptionsChanged: Ember.observer('computedQueryOptions', function() {
-    this.reloadItems();
+    Ember.run.scheduleOnce('actions', this, this.reloadItems);
   }),
+
+  init() {
+    this._super(...arguments);
+
+    if (Ember.isNone(this.get('queryTokens'))) {
+      this.set('queryTokens', []);
+    }
+
+    if (Ember.isNone(this.get('filterGroups'))) {
+      this.set('filterGroups', []);
+    }
+  },
 
   /**
    * Load items on render
    */
   didReceiveAttrs() {
+    this._super(...arguments);
     this.reloadItems();
   },
 
@@ -223,6 +243,7 @@ export default Ember.Component.extend({
       const newQueryTokens = queryTokens.reject(queryToken => {
         return queryToken.equals(queryTokenToRemove);
       });
+      this.set('queryTokens', newQueryTokens);
     },
 
     /**
@@ -248,3 +269,5 @@ export default Ember.Component.extend({
     }
   }
 });
+
+export default ListCardComponent;
