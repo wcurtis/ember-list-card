@@ -83,6 +83,16 @@ export default ListCardComponent.extend({
 });
 ```
 
+### Styles
+
+`ember-list-card` comes with some optional styles that can be imported into the consuming app (currently only sass).
+To include the stlyes:
+
+```sass
+// app/styles/app.scss
+@import "ember-list-card";
+```
+
 ## Developing
 
 ```
