@@ -10,5 +10,5 @@
  * order when this addon's stylesheet gets included in the styles order?
  */
 
-@import "components/list-card";
-@import "components/list-card/header";
+@import "ember-list-card/list-card";
+@import "ember-list-card/list-card/header";
